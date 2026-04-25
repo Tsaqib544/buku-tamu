@@ -38,6 +38,12 @@ if (!defined('BASE_URL')) {
                         <i class="bi bi-people me-1"></i>Data Tamu
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ruangan.php' ? 'active' : '' ?>"
+                       href="<?= BASE_URL ?>/pages/ruangan.php">
+                        <i class="bi bi-door-open me-1"></i>Ruangan
+                    </a>
+                </li>
                 <?php if (isAdmin()): ?>
                 <li class="nav-item">
                     <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : '' ?>"

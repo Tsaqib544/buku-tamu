@@ -108,13 +108,6 @@ if (empty($_SESSION['csrf_token'])) {
             background: #f8fafc;
             border-color: #dee2e6;
         }
-
-        /* .demo-box {
-            background: #f1f5f9;
-            border-radius: .5rem;
-            font-size: .82rem;
-            padding: .75rem 1rem;
-        } */
     </style>
 </head>
 

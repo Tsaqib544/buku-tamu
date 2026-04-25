@@ -9,7 +9,9 @@ $tamuHariIni = $conn->query("SELECT COUNT(*) as c FROM tamu WHERE tanggal_kunjun
 $sedangHadir = $conn->query("SELECT COUNT(*) as c FROM tamu WHERE status = 'hadir'")->fetch_assoc()['c'];
 $menunggu    = $conn->query("SELECT COUNT(*) as c FROM tamu WHERE status = 'menunggu'")->fetch_assoc()['c'];
 
-$recentTamu = $conn->query("SELECT t.*, u.nama as petugas FROM tamu t LEFT JOIN users u ON t.created_by = u.id ORDER BY t.created_at DESC LIMIT 5");
+$recentTamu      = $conn->query("SELECT t.*, u.nama as petugas FROM tamu t LEFT JOIN users u ON t.created_by = u.id ORDER BY t.created_at DESC LIMIT 5");
+$ruanganTersedia = $conn->query("SELECT COUNT(*) as c FROM ruangan WHERE status='tersedia'")->fetch_assoc()['c'];
+$totalRuangan    = $conn->query("SELECT COUNT(*) as c FROM ruangan")->fetch_assoc()['c'];
 
 $conn->close();
 $pageTitle = 'Dashboard';
@@ -75,6 +77,28 @@ include __DIR__ . '/../includes/header.php';
                     <div class="fs-3 fw-bold text-warning"><?= $menunggu ?></div>
                     <div class="text-muted" style="font-size:.82rem">Menunggu</div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ruangan Info -->
+<div class="row g-3 mb-4">
+    <div class="col-12">
+        <div class="card stat-card">
+            <div class="card-body d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon bg-secondary bg-opacity-10 text-secondary">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold">Ruangan &mdash; <span class="text-success"><?= $ruanganTersedia ?> tersedia</span> dari <?= $totalRuangan ?> total ruangan</div>
+                        <div class="text-muted" style="font-size:.82rem">Klik untuk melihat detail ketersediaan ruangan</div>
+                    </div>
+                </div>
+                <a href="<?= BASE_URL ?>/pages/ruangan.php" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-door-open me-1"></i>Lihat Ruangan
+                </a>
             </div>
         </div>
     </div>
